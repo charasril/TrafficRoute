@@ -42,7 +42,7 @@ public class MainStartSearchRoute extends Activity implements View.OnClickListen
     }
 
     private void onProcessConnect() {
-        
+
     } //onProcessConnect
 
 
