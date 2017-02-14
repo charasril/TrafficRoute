@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/TrafficRoute.iml" filepath="$PROJECT_DIR$/TrafficRoute.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/functionallibrary/functionallibrary.iml" filepath="$PROJECT_DIR$/functionallibrary/functionallibrary.iml" />
     </modules>
   </component>
 </project>
