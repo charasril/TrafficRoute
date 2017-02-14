@@ -10,9 +10,9 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginLeft="15dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="21dp">
+        android:layout_marginLeft="19dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="22dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -30,23 +30,97 @@
                 android:layout_height="match_parent">
 
                 <LinearLayout
-                    android:id="@+id/tab1"
+                    android:id="@+id/tab_search"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:text="Fom : "
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/textView18"
+                            android:paddingTop="30dp" />
+
+                        <EditText
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:inputType="textPersonName"
+                            android:text="Start"
+                            android:ems="10"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="23dp"
+                            android:id="@+id/editText_start" />
+
+                        <TextView
+                            android:text="TO : "
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignTop="@+id/tabHost3"
+                            android:layout_alignLeft="@+id/tabHost3"
+                            android:layout_alignStart="@+id/tabHost3"
+                            android:layout_marginTop="82dp"
+                            android:id="@+id/textView19" />
+
+                        <EditText
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:inputType="textPersonName"
+                            android:text="To : "
+                            android:ems="10"
+                            android:id="@+id/editText_end"
+                            android:layout_alignTop="@+id/textView19"
+                            android:layout_alignLeft="@+id/editText_start"
+                            android:layout_alignStart="@+id/editText_start" />
+
+                        <Button
+                            android:text="Search"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/editText_start"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentEnd="true"
+                            android:id="@+id/button_search" />
+
+                        <Button
+                            android:text="Exit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/editText_end"
+                            android:layout_alignLeft="@+id/button_search"
+                            android:layout_alignStart="@+id/button_search"
+                            android:id="@+id/button_exit" />
+
+                        <ExpandableListView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_below="@+id/editText_end"
+                            android:layout_marginTop="43dp"
+                            android:id="@+id/expand_list_views"/>
+
+                    </RelativeLayout>
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/tab2"
+                    android:id="@+id/tab_map"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
+                    <fragment
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:name="android.webkit.WebViewFragment"
+                        android:id="@+id/fragment" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/tab3"
+                    android:id="@+id/tab_histlist"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
