@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         int id = v.getId();
 
+
         if (id == R.id.button_start) {
             Intent i = new Intent(getApplicationContext(), MainStartSearchRoute.class);
             startActivity(i);
