@@ -1,6 +1,8 @@
 package com.example.win.trafficroute;
 
 //import android.*;
+//package com.example.akexorcist.googledirection.sample;
+
 
 import android.Manifest;
 import android.app.Activity;
@@ -25,7 +27,6 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-
 
 
 /**
@@ -70,11 +71,6 @@ public class SearchRouteList extends Activity implements OnMapReadyCallback,View
 //        mDatabase = mHelper.getWritableDatabase();
 
 //        ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_map)).getMapAsync(this);
-
-
-
-//        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_map);
-//        mapFragment.getMapAsync(this);
 
     }
 
