@@ -1,1 +1,1 @@
-include ':app', ':functionallibrary', ':googledirectionlibrary'
+include ':app', ':functionallibrary', ':googledirectionlibrary', ':backend'
