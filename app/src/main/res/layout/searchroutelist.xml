@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
 
 
     <TabHost
@@ -40,7 +41,7 @@
                         android:layout_height="match_parent">
 
                         <TextView
-                            android:text="Fom : "
+                            android:text="From : "
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/textView18"
@@ -115,8 +116,9 @@
                     <fragment
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:name="com.google.android.gms.maps.MapFragment"
-                        android:id="@+id/fragment_map" />
+                        android:name="com.google.android.gms.maps.SupportMapFragment"
+                        android:id="@+id/fragment_map"
+                        tools:context=".SearchRouteList"/>
                 </RelativeLayout>
 
                 <RelativeLayout

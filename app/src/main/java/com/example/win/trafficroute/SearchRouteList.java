@@ -1,13 +1,11 @@
 package com.example.win.trafficroute;
 
-//import android.*;
-//package com.example.akexorcist.googledirection.sample;
-
 
 import android.Manifest;
 import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
+import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -21,6 +19,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.win.trafficroute.db.DatabaseHelper;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -29,6 +28,13 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 
+////
+
+//import com.example.akexorcist.googledirection.DirectionCallback;
+//import com.example.akexorcist.googledirection.GoogleDirection;
+//import com.example.akexorcist.googledirection.constant.TransportMode;
+//import com.example.akexorcist.googledirection.model.Direction;
+//import com.example.akexorcist.googledirection.util.DirectionConverter;
 /**
  * Created by win on 14/2/2560.
  */
@@ -49,6 +55,8 @@ public class SearchRouteList extends Activity implements OnMapReadyCallback,View
     private LocationManager locationManager;
     private Double startLatADouble = 0.0, startLngADouble = 0.0;
     private Double endLatADouble , endLngADouble;
+    private DatabaseHelper myManage;
+    private Criteria criteria;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +77,17 @@ public class SearchRouteList extends Activity implements OnMapReadyCallback,View
         listViewHistList = (ListView) findViewById(R.id.listView_histlist);
 //        mHelper = new DatabaseHelper(this);
 //        mDatabase = mHelper.getWritableDatabase();
+
+
+        //my setup
+        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        criteria = new Criteria();
+        criteria.setAccuracy(Criteria.ACCURACY_FINE);
+        criteria.setAltitudeRequired(false);
+        criteria.setBearingRequired(false);
+
+//        SupportMapFragment mapSearch = new SupportMapFragment(). findViewById(R.id.fragment_map);
+//        myManage = new DatabaseHelper(SearchRouteList.this);
 
 //        ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_map)).getMapAsync(this);
 
