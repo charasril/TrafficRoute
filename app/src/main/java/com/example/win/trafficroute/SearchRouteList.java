@@ -1,11 +1,13 @@
 package com.example.win.trafficroute;
 
 import android.app.Activity;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 
 
@@ -17,6 +19,9 @@ public class SearchRouteList extends Activity implements View.OnClickListener, T
 //   TabHost tabSearch,tabMap,tabHistList;
     EditText editTextStart ,editTextEnd;
     Button buttonSearch , buttonExit;
+    ListView listViewHistList ;
+//    private DatabaseHelper mHelper;
+    private SQLiteDatabase mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +39,9 @@ public class SearchRouteList extends Activity implements View.OnClickListener, T
         buttonSearch.setOnClickListener(this);
         buttonExit.setOnClickListener(this);
 
-
+        listViewHistList = (ListView) findViewById(R.id.listView_histlist);
+//        mHelper = new DatabaseHelper(this);
+//        mDatabase = mHelper.getWritableDatabase();
     }
 
     @Override
