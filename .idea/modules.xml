@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/TrafficRoute.iml" filepath="$PROJECT_DIR$/TrafficRoute.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/functionallibrary/functionallibrary.iml" filepath="$PROJECT_DIR$/functionallibrary/functionallibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/googledirectionlibrary/googledirectionlibrary.iml" filepath="$PROJECT_DIR$/googledirectionlibrary/googledirectionlibrary.iml" />
     </modules>
   </component>
 </project>

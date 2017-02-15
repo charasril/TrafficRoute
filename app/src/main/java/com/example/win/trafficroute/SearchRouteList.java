@@ -6,7 +6,6 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TabHost;
 import android.widget.TextView;
 
 
@@ -15,7 +14,7 @@ import android.widget.TextView;
  */
 
 public class SearchRouteList extends Activity implements View.OnClickListener, TextView.OnEditorActionListener {
-   TabHost tabSearch,tabMap,tabHistList;
+//   TabHost tabSearch,tabMap,tabHistList;
     EditText editTextStart ,editTextEnd;
     Button buttonSearch , buttonExit;
 
@@ -34,8 +33,6 @@ public class SearchRouteList extends Activity implements View.OnClickListener, T
         buttonExit = (Button) findViewById(R.id.button_exit);
         buttonSearch.setOnClickListener(this);
         buttonExit.setOnClickListener(this);
-
-//        tabSearch = (TabHost) findViewById(R.id.tab_search);
 
 
     }

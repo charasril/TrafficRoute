@@ -17,6 +17,7 @@
         </activity>
         <activity android:name=".UserRegistration"></activity>
         <activity android:name=".MainStartSearchRoute"></activity>
+        <activity android:name=".SearchRouteList"></activity>
     </application>
 
 </manifest>
