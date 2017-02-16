@@ -70,6 +70,7 @@ public class UserRegistration extends Activity implements View.OnClickListener, 
         switch (id){
             case R.id.button_connect_save:
                 onSaveProcess();
+
                 break;
             case R.id.button_clear :
                 onClearScreenProcess();
@@ -90,6 +91,7 @@ public class UserRegistration extends Activity implements View.OnClickListener, 
                 onSaveProcess();
             }
         }
+
         finish();
     } //onExit
 
@@ -118,6 +120,7 @@ public class UserRegistration extends Activity implements View.OnClickListener, 
             ib_edit = false;
 
         }
+
     } //onClearScreenProcess
 
 
@@ -170,20 +173,18 @@ public class UserRegistration extends Activity implements View.OnClickListener, 
                         + lnameEditText.getText()+"','" +""+ "','"+emailEditText.getText()
                         + "','" +passwordEditText.getText()+"');");
 
-//                editName.setText("");
-//                editLastName.setText("");
-//                editSchool.setText("");
-
-                Toast.makeText(getApplicationContext(), "เพิ่มข้อมูลนักเรียนเรียบร้อยแล้ว"
+                Toast.makeText(getApplicationContext(), "เพิ่มข้อมูลผู้ใช้เรียบร้อยแล้ว"
                         , Toast.LENGTH_SHORT).show();
             }//mCursor.getCount() = 0 เพิ่ม
             else {
-                Toast.makeText(getApplicationContext(), "คุณมีข้อมูลนักเรียนคนนี้อยู่แล้ว"
+                Toast.makeText(getApplicationContext(), "คุณมีข้อมูลผู้ใช้คนนี้อยู่แล้ว"
                         , Toast.LENGTH_SHORT).show();
             }
              }
             //
            // onAlertDialog(this,"Save","Save Completa","Yes","No");
+            mHelper.close();
+            mDatabase.close();
             ib_edit =false;
             onClearScreenProcess();
     } //onSaveProcess
