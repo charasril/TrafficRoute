@@ -118,7 +118,7 @@
                         android:layout_height="wrap_content"
                         android:name="com.google.android.gms.maps.SupportMapFragment"
                         android:id="@+id/fragment_map"
-                        tools:context=".SearchRouteList"/>
+                        tools:context=".MapsActivity"/>
                 </RelativeLayout>
 
                 <RelativeLayout

@@ -6,8 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private Button buttonStart,buttonClose,buttonRegsitration;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
