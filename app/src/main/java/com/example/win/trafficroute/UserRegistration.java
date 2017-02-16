@@ -3,12 +3,17 @@ package com.example.win.trafficroute;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.win.trafficroute.db.DatabaseHelper;
 
 /**
  * Created by win on 14/2/2560.
@@ -20,6 +25,11 @@ public class UserRegistration extends Activity implements View.OnClickListener, 
     private EditText userEditText, passwordEditText, fnameEditText, lnameEditText, confirmEditText, emailEditText;
     private boolean ib_edit = false;
     private Integer msgReturn;
+
+    private DatabaseHelper mHelper;
+    private SQLiteDatabase mDatabase;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -116,17 +126,17 @@ public class UserRegistration extends Activity implements View.OnClickListener, 
         dialog = onAlertDialog(this,"Save","Do You want to save user?","Yse","No");
         if (dialog==1){
             // Connect Database save User
-            if ((userEditText.getText() == null) ||
-               (passwordEditText.getText() == null) ||
-               (fnameEditText.getText() == null) ||
-               (lnameEditText.getText() == null) ||
-               (confirmEditText.getText() == null) ||
-               (emailEditText.getText() == null)){
+            if (((userEditText.getText() == null) || (userEditText.length()) ==0) ||
+               (passwordEditText.getText() == null || passwordEditText.length()==0) ||
+               (fnameEditText.getText() == null || fnameEditText.length()==0) ||
+               (lnameEditText.getText() == null || lnameEditText.length()==0 ) ||
+               (confirmEditText.getText() == null || confirmEditText.length()==0) ||
+               (emailEditText.getText() == null || emailEditText.length()==0)){
                 chkSave = onAlertDialog(this,"Save","Your Information Not Compleate,Click Yes : when you confirm /Cancel : when you cance","Yes","Cancel");
                 if (chkSave==2){
                     finish();
                 }
-            }
+            } // check ค่าว่าง
 
             if (passwordEditText.getText()!=confirmEditText.getText()) {
                 chkSave = onAlertDialog(this,"Save","Password and Confirm password does not equal : YES ==> fill data agan / NO ==> Cancel out this screen","Yes","Cancel");
@@ -134,18 +144,48 @@ public class UserRegistration extends Activity implements View.OnClickListener, 
                     finish();
                 }
 
-            }
+            } // check password not equal
+
             // process connect save
+            mHelper = new DatabaseHelper(this);
+            mDatabase = mHelper.getWritableDatabase();
+//            Date dateActive = (Date.valueOf(Date));
+            Cursor mCursor = mDatabase.rawQuery("SELECT * FROM " + mHelper.TABLE_USER_NAME
+                    + " WHERE " + mHelper.COL_USER_NAME+ "='" + userEditText.getText() + "'"
+                    + " AND " + mHelper.COL_USER_FNAME + "='" + fnameEditText.getText() + "'"
+                    + " AND " + mHelper.COL_USER_LNAME + "='" + lnameEditText.getText() + "'"
+                    + " AND " + mHelper.COL_USER_ACTIEVE_DATE + "='"+"Feb 01,2017" + "'"
+                    + " AND " + mHelper.COL_USER_EMAIL + "='" + emailEditText.getText() + "'"
+                    + " AND " + mHelper.COL_USER_PASSWORD + "='" +  passwordEditText.getText() + "'", null);
 
+            if(mCursor.getCount() == 0) {
+                mDatabase.execSQL("INSERT INTO " + mHelper.TABLE_USER_NAME
+                        + " (" + mHelper.COL_USER_NAME + ", "
+                        + mHelper.COL_USER_FNAME+ ", "
+                        + mHelper.COL_USER_LNAME + ", "
+                        + mHelper.COL_USER_ACTIEVE_DATE+ ", "
+                        + mHelper.COL_USER_EMAIL + ", "
+                        + mHelper.COL_USER_PASSWORD+") VALUES ('"
+                        + userEditText.getText()+ "','"+ fnameEditText.getText()+"','"
+                        + lnameEditText.getText()+"','" +""+ "','"+emailEditText.getText()
+                        + "','" +passwordEditText.getText()+"');");
 
+//                editName.setText("");
+//                editLastName.setText("");
+//                editSchool.setText("");
+
+                Toast.makeText(getApplicationContext(), "เพิ่มข้อมูลนักเรียนเรียบร้อยแล้ว"
+                        , Toast.LENGTH_SHORT).show();
+            }//mCursor.getCount() = 0 เพิ่ม
+            else {
+                Toast.makeText(getApplicationContext(), "คุณมีข้อมูลนักเรียนคนนี้อยู่แล้ว"
+                        , Toast.LENGTH_SHORT).show();
+            }
+             }
             //
-            onAlertDialog(this,"Save","Save Completa","Yes","No");
+           // onAlertDialog(this,"Save","Save Completa","Yes","No");
             ib_edit =false;
             onClearScreenProcess();
-
-
-        }
-
     } //onSaveProcess
 
     @Override
