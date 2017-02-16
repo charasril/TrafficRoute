@@ -39,7 +39,7 @@ public class UserRegistration extends Activity implements View.OnClickListener, 
         confirmEditText.setOnEditorActionListener(this);
         emailEditText.setOnEditorActionListener(this);
 
-        buttonSave = (Button) findViewById(R.id.button_save);
+        buttonSave = (Button) findViewById(R.id.button_connect_save);
         buttonSave.setOnClickListener(this);
 
         buttonClear = (Button) findViewById(R.id.button_clear);
@@ -58,7 +58,7 @@ public class UserRegistration extends Activity implements View.OnClickListener, 
         int id = v.getId();
 
         switch (id){
-            case R.id.button_save :
+            case R.id.button_connect_save:
                 onSaveProcess();
                 break;
             case R.id.button_clear :

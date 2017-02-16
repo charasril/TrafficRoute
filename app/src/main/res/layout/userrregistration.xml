@@ -151,13 +151,13 @@
         android:layout_alignLeft="@+id/textView6"
         android:layout_alignStart="@+id/textView6"
         android:layout_marginTop="41dp"
-        android:id="@+id/button_save" />
+        android:id="@+id/button_connect_save" />
 
     <Button
         android:text="Clear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/button_save"
+        android:layout_alignTop="@+id/button_connect_save"
         android:layout_alignLeft="@+id/editText_Lnaem"
         android:layout_alignStart="@+id/editText_Lnaem"
         android:id="@+id/button_clear" />
