@@ -127,7 +127,7 @@ public class SearchRouteList extends AppCompatActivity implements OnMapReadyCall
     protected void onResume() {
         super.onResume();
         mLocalActivityManager.dispatchResume();
-        afterResume();
+//        afterResume();
     }
 
     private void afterResume() {
