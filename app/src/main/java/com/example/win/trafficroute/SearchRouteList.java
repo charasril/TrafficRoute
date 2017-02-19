@@ -1,8 +1,8 @@
 package com.example.win.trafficroute;
 
-
 import android.Manifest;
-import android.app.Activity;
+import android.app.LocalActivityManager;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.location.Criteria;
@@ -11,13 +11,16 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TabHost;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.win.trafficroute.db.DatabaseHelper;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -27,40 +30,40 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+//import android.app.LocalActivityManager;
 
-////
-
-//import com.example.akexorcist.googledirection.DirectionCallback;
-//import com.example.akexorcist.googledirection.GoogleDirection;
-//import com.example.akexorcist.googledirection.constant.TransportMode;
-//import com.example.akexorcist.googledirection.model.Direction;
-//import com.example.akexorcist.googledirection.util.DirectionConverter;
 /**
  * Created by win on 14/2/2560.
  */
 
-
-public class SearchRouteList extends Activity implements OnMapReadyCallback,View.OnClickListener, TextView.OnEditorActionListener {
+public class SearchRouteList extends AppCompatActivity implements OnMapReadyCallback,View.OnClickListener, TextView.OnEditorActionListener {
 //   TabHost tabSearch,tabMap,tabHistList;
     EditText editTextStart ,editTextEnd;
     Button buttonSearch , buttonExit;
     ListView listViewHistList ;
-//    private DatabaseHelper mHelper;
+    private DatabaseHelper mHelper;
     private SQLiteDatabase mDatabase;
     private GoogleMap googleMap;
     private String serverKey = "AIzaSyDkxXWseLD9nGDV81y6DgBA1PLbwp5tzwU";
     private LatLng camera ;//= new LatLng(37.782437, -122.4281893);
     private LatLng origin ;//= new LatLng(37.7849569, -122.4068855);
-    private LatLng destination = new LatLng(37.7814432, -122.4460177);
+    private LatLng destination;// = new LatLng(37.7814432, -122.4460177);
     private LocationManager locationManager;
     private Double startLatADouble = 0.0, startLngADouble = 0.0;
     private Double endLatADouble , endLngADouble;
     private DatabaseHelper myManage;
     private Criteria criteria;
+    private TabHost tabWork ;
+    private TabHost.TabSpec tabSearch, tabMap, tabHistList;
+    LocalActivityManager mLocalActivityManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Toast.makeText(getApplicationContext(), "Hello Message on Search RouteRoute"
+                , Toast.LENGTH_SHORT).show();
+
         setContentView(R.layout.searchroutelist);
 
         editTextStart = (EditText) findViewById(R.id.editText_start);
@@ -69,34 +72,61 @@ public class SearchRouteList extends Activity implements OnMapReadyCallback,View
         editTextStart.setOnEditorActionListener(this);
         editTextEnd.setOnEditorActionListener(this);
 
-        buttonSearch = (Button) findViewById(R.id.button_search);
+        buttonSearch = (Button) findViewById(R.id.button_search1);
         buttonExit = (Button) findViewById(R.id.button_exit);
         buttonSearch.setOnClickListener(this);
         buttonExit.setOnClickListener(this);
 
-        listViewHistList = (ListView) findViewById(R.id.listView_histlist);
+        mLocalActivityManager = new LocalActivityManager(this, false);
+        mLocalActivityManager.dispatchCreate(savedInstanceState);
+
+        tabWork = (TabHost) findViewById(R.id.Tab_Working);
+        tabWork.setup(mLocalActivityManager);
+        tabSearch  = tabWork.newTabSpec("tab_Search")
+                .setIndicator("ค้นหา")
+                .setContent(new Intent(this, Tab_search.class));
+
+        tabMap = tabWork.newTabSpec("tab_map")
+                .setIndicator("เส้นทางที่เลือก")
+                .setContent(new Intent(this, Tab_map.class));
+
+        tabHistList = tabWork.newTabSpec("tab_histlist")
+                .setIndicator("ประวัติการใช้งาน")
+                .setContent(new Intent(this, Tab_HistList.class));
+
+        tabWork.addTab(tabSearch);
+        tabWork.addTab(tabMap);
+        tabWork.addTab(tabHistList);
+
+        //tabsearch
+
+//        //tab hist list activty
+//        listViewHistList = (ListView) findViewById(R.id.listView_histlist);
 //        mHelper = new DatabaseHelper(this);
 //        mDatabase = mHelper.getWritableDatabase();
-
-
-        //my setup
-        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-        criteria = new Criteria();
-        criteria.setAccuracy(Criteria.ACCURACY_FINE);
-        criteria.setAltitudeRequired(false);
-        criteria.setBearingRequired(false);
-
-//        SupportMapFragment mapSearch = new SupportMapFragment(). findViewById(R.id.fragment_map);
-//        myManage = new DatabaseHelper(SearchRouteList.this);
-
+//
+//        //my setup  //tab map
+//        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+//        criteria = new Criteria();
+//        criteria.setAccuracy(Criteria.ACCURACY_FINE);
+//        criteria.setAltitudeRequired(false);
+//        criteria.setBearingRequired(false);
+//
 //        ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_map)).getMapAsync(this);
+//
+//        Toast.makeText(getApplicationContext(),"On create gpsLocation Start==>", Toast.LENGTH_SHORT).show();
+
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mLocalActivityManager.dispatchPause(!isFinishing());
 
     }
 
-
     protected void onResume() {
         super.onResume();
-
+        mLocalActivityManager.dispatchResume();
         afterResume();
     }
 
@@ -120,15 +150,19 @@ public class SearchRouteList extends Activity implements OnMapReadyCallback,View
             startLngADouble = networkLocation.getLongitude();
         }
 
+        Toast.makeText(getApplicationContext(),"After Resume networkLocation Start==>"+
+                startLatADouble+"  Destination ==> "+startLngADouble  , Toast.LENGTH_SHORT).show();
+
         Location gpsLocation = myfindLocation(LocationManager.GPS_PROVIDER);
         if (gpsLocation != null) {
             startLatADouble = gpsLocation.getLatitude();
             startLngADouble = gpsLocation.getLongitude();
-
         }
-        Log.d("15FebV1", "Lat ==> " + startLatADouble);
-        Log.d("15FebV1", "Lat ==> " + startLngADouble);
+        Log.d("Check", "Lat ==> " + startLatADouble);
+        Log.d("Check", "Lat ==> " + startLngADouble);
 
+        Toast.makeText(getApplicationContext(),"After Resume gpsLocation Start==>"+
+                startLatADouble+"  Destination ==> "+startLngADouble  , Toast.LENGTH_SHORT).show();
 
     } //after Resume
 
@@ -216,8 +250,8 @@ public class SearchRouteList extends Activity implements OnMapReadyCallback,View
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));;
         endLatADouble = latLng.latitude;
         endLngADouble = latLng.longitude;
-        Log.d("30janV1","Destination Lat ==> "+endLatADouble);
-        Log.d("30janV1","Destination Lng ==> "+endLngADouble);
+        Log.d("19janV1","Destination Lat ==> "+endLatADouble);
+        Log.d("19janV1","Destination Lng ==> "+endLngADouble);
         destination = new LatLng(endLatADouble,endLngADouble);
 
     } // createMakerDestination
@@ -233,7 +267,7 @@ public class SearchRouteList extends Activity implements OnMapReadyCallback,View
         if (id==R.id.button_exit) {
             finish();
         }
-        if (id==R.id.button_search) {
+        if (id==R.id.button_search1) {
            //process search
         }
 

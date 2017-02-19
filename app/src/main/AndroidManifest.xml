@@ -2,16 +2,27 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.win.trafficroute">
 
+    // Download Map from google Server
     <uses-permission android:name="android.permission.INTERNET" />
+
+    //Check Status Connection cellular data ==> Mobile Data Before Donwlaod Map
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    // Check Status connecttion Wifi Before Donwlaod Map
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    //Cach map data
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    //Get Current Abount Location By Mobile Or WIFI Status
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    //-re
+
+    //-Get and re Location USE GPS find location
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     //ค้นหา
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ.GSERVICES" />
-    //ค้นหา service netwok
+    //ค้นหา service network
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -28,6 +39,12 @@
         <activity android:name=".UserRegistration" />
         <activity android:name=".MainStartSearchRoute" />
         <activity android:name=".SearchRouteList" />
+        <activity android:name=".SearchRouteActivity"/>
+
+        <activity android:name=".Tab_Working"/>
+        <activity android:name=".Tab_map"/>
+        <activity android:name=".Tab_HistList"/>
+        <activity android:name=".Tab_search"/>
 
          <!--<meta-data-->
          <!--android:name="com.google.android.gms.version"-->
@@ -36,6 +53,11 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAPuASrlkcgxg5xFJXRVUXsk5sV-e9K1Ww" />
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
     </application>
 
 </manifest>

@@ -23,10 +23,13 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.example.akexorcist.googledirection.constant.RequestResult;
-import com.example.akexorcist.googledirection.model.googledirection.model.Route;
+import com.example.akexorcist.googledirection.model.GeocodedWaypoint;
+import com.example.akexorcist.googledirection.model.Route;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
+
+//import com.example.akexorcist.googledirection.model;
 
 /**
  * Created by Akexorcist on 11/29/15 AD.
@@ -35,7 +38,7 @@ import java.util.List;
 @SuppressWarnings("WeakerAccess")
 public class Direction implements Parcelable {
     @SerializedName("geocoded_waypoints")
-    private List<com.example.akexorcist.googledirection.model.googledirection.model.GeocodedWaypoint> geocodedWaypointList;
+    private List<GeocodedWaypoint> geocodedWaypointList;
     @SerializedName("routes")
     private List<Route> routeList;
     private String status;

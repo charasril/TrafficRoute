@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:name="com.google.android.gms.maps.MapFragment"
+        android:layout_marginTop="157dp"
+        android:id="@+id/fragment_map" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Name"
+        android:ems="10"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="14dp"
+        android:id="@+id/editText_search_from" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Name"
+        android:ems="10"
+        android:layout_below="@+id/editText_search_from"
+        android:layout_alignRight="@+id/editText_search_from"
+        android:layout_alignEnd="@+id/editText_search_from"
+        android:id="@+id/editText_search_destination" />
+
+    <Button
+        android:text="ค้นหา"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/editText_search_from"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="15dp"
+        android:layout_marginEnd="15dp"
+        android:id="@+id/button_search" />
+
+    <Button
+        android:text="ออก"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/editText_search_destination"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="15dp"
+        android:layout_marginEnd="15dp"
+        android:id="@+id/button_close" />
+
+    <TextView
+        android:text="Destination :"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button_search"
+        android:layout_alignLeft="@+id/textView23"
+        android:layout_alignStart="@+id/textView23"
+        android:id="@+id/textView21" />
+
+    <TextView
+        android:text="From :"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/editText_search_from"
+        android:id="@+id/textView23" />
+
+    <TextView
+        android:text="เส้นทาง"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button_close"
+        android:layout_alignRight="@+id/textView21"
+        android:layout_alignEnd="@+id/textView21"
+        android:layout_marginTop="20dp"
+        android:id="@+id/textView25" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editText_search_destination"
+        android:layout_alignStart="@+id/editText_search_destination"
+        android:layout_marginLeft="38dp"
+        android:layout_marginStart="38dp"
+        android:layout_alignTop="@+id/textView25"
+        style="@style/Widget.AppCompat.Light.ListView.DropDown"
+        android:id="@+id/ListView_Route" />
+
+
+</RelativeLayout>
