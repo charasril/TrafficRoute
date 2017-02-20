@@ -40,7 +40,6 @@
         <activity android:name=".MainStartSearchRoute" />
         <activity android:name=".SearchRouteList" />
         <activity android:name=".SearchRouteActivity"/>
-
         <activity android:name=".Tab_Working"/>
         <activity android:name=".Tab_map"/>
         <activity android:name=".Tab_HistList"/>

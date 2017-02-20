@@ -1,34 +1,23 @@
 package com.example.win.trafficroute;
 
-import android.Manifest;
 import android.app.LocalActivityManager;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.location.Criteria;
-import android.location.Location;
-import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TabHost;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.win.trafficroute.db.DatabaseHelper;
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 
 //import android.app.LocalActivityManager;
 
@@ -36,7 +25,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
  * Created by win on 14/2/2560.
  */
 
-public class SearchRouteList extends AppCompatActivity implements OnMapReadyCallback,View.OnClickListener, TextView.OnEditorActionListener {
+public class SearchRouteList extends AppCompatActivity implements View.OnClickListener {
+        //implements OnMapReadyCallback,View.OnClickListener, TextView.OnEditorActionListener {
 //   TabHost tabSearch,tabMap,tabHistList;
     EditText editTextStart ,editTextEnd;
     Button buttonSearch , buttonExit;
@@ -61,43 +51,54 @@ public class SearchRouteList extends AppCompatActivity implements OnMapReadyCall
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         Toast.makeText(getApplicationContext(), "Hello Message on Search RouteRoute"
                 , Toast.LENGTH_SHORT).show();
 
         setContentView(R.layout.searchroutelist);
-
+        Log.d("Check","Search Route On onCreate ==>onCreate =1");
         editTextStart = (EditText) findViewById(R.id.editText_start);
         editTextEnd = (EditText) findViewById(R.id.editText_end);
 
-        editTextStart.setOnEditorActionListener(this);
-        editTextEnd.setOnEditorActionListener(this);
+//        editTextStart.setOnEditorActionListener(this);
+//        editTextEnd.setOnEditorActionListener(this);
 
         buttonSearch = (Button) findViewById(R.id.button_search1);
         buttonExit = (Button) findViewById(R.id.button_exit);
         buttonSearch.setOnClickListener(this);
         buttonExit.setOnClickListener(this);
-
+        Log.d("Check","Search Route On onCreate ==>onCreate =2");
         mLocalActivityManager = new LocalActivityManager(this, false);
         mLocalActivityManager.dispatchCreate(savedInstanceState);
 
+        Log.d("Check","Search Route On onCreate ==>onCreate =3");
         tabWork = (TabHost) findViewById(R.id.Tab_Working);
+        Log.d("Check","Search Route On onCreate ==>onCreate =3-1");
         tabWork.setup(mLocalActivityManager);
+        Log.d("Check","Search Route On onCreate ==>onCreate =3-2");
+
         tabSearch  = tabWork.newTabSpec("tab_Search")
                 .setIndicator("ค้นหา")
                 .setContent(new Intent(this, Tab_search.class));
+        Log.d("Check","Search Route On onCreate ==>onCreate =3-3");
 
         tabMap = tabWork.newTabSpec("tab_map")
                 .setIndicator("เส้นทางที่เลือก")
                 .setContent(new Intent(this, Tab_map.class));
+        Log.d("Check","Search Route On onCreate ==>onCreate =3-4");
 
         tabHistList = tabWork.newTabSpec("tab_histlist")
                 .setIndicator("ประวัติการใช้งาน")
                 .setContent(new Intent(this, Tab_HistList.class));
+        Log.d("Check","Search Route On onCreate ==>onCreate =3-5");
 
-        tabWork.addTab(tabSearch);
-        tabWork.addTab(tabMap);
-        tabWork.addTab(tabHistList);
-
+//        tabWork.addTab(tabSearch);
+//        Log.d("Check","Search Route On onCreate ==>onCreate =3-6");
+//        tabWork.addTab(tabMap);
+//        Log.d("Check","Search Route On onCreate ==>onCreate =3-7");
+//        tabWork.addTab(tabHistList);
+        Log.d("Check","Search Route On onCreate ==>onCreate =4");
+        Toast.makeText(getApplicationContext(),"2-Search Route==> onCreate " , Toast.LENGTH_SHORT).show();
         //tabsearch
 
 //        //tab hist list activty
@@ -126,10 +127,12 @@ public class SearchRouteList extends AppCompatActivity implements OnMapReadyCall
 
     protected void onResume() {
         super.onResume();
+        Log.d("Check","Search Route On Resume ==>Intent ");
         mLocalActivityManager.dispatchResume();
 //        afterResume();
     }
 
+    /*
     private void afterResume() {
 
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -260,6 +263,8 @@ public class SearchRouteList extends AppCompatActivity implements OnMapReadyCall
         origin = new LatLng(startLatADouble, startLngADouble);
         googleMap.addMarker(new MarkerOptions().position(origin));
     }
+
+    */
     @Override
     public void onClick(View v) {
         int id = v.getId();
@@ -274,8 +279,8 @@ public class SearchRouteList extends AppCompatActivity implements OnMapReadyCall
 
     } //onClick
 
-    @Override
-    public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-        return false;
-    }
+//    @Override
+//    public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+//        return false;
+//    }
 }  //class SearchRouteList

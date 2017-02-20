@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    private Button buttonStart,buttonClose,buttonRegsitration;
+    private Button buttonStart,buttonClose,buttonRegsitration, buttonTab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,8 +19,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonStart = (Button) findViewById(R.id.button_start);
         buttonClose = (Button) findViewById(R.id.button_close);
         buttonRegsitration = (Button) findViewById(R.id.button_registration);
-
-        Button buttonTab = (Button) findViewById(R.id.button_tab);
+        buttonTab = (Button) findViewById(R.id.button_tab);
 
         buttonStart.setOnClickListener(this);
         buttonClose.setOnClickListener(this);
@@ -48,9 +47,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else if (id == R.id.button_close) {
             finish();
         } else if (id == R.id.button_tab) {
+            Log.d("Check","MainActvity OnClick ==>button_tab");
 
-
+//            Toast.makeText(getApplicationContext(),"1-Main Actvity Route==> On Click " , Toast.LENGTH_SHORT).show();
             Intent i = new Intent(getApplicationContext(), SearchRouteList.class);
+            Log.d("Check","MainActvity OnClick ==>Intent "+i);
             startActivity(i);
         }
 

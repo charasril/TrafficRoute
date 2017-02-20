@@ -1,6 +1,5 @@
 package com.example.win.trafficroute;
 
-import android.*;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
 import android.location.Location;
@@ -20,6 +19,8 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+//import android.support.annotation.Nullable;
 //import com.example.win.trafficroute.db.DatabaseHelper;
 
 /**
@@ -35,7 +36,7 @@ public class Tab_map extends AppCompatActivity implements OnMapReadyCallback {
     private LatLng destination;// = new LatLng(37.7814432, -122.4460177);
     private LocationManager locationManager;
     private Double startLatADouble = 0.0, startLngADouble = 0.0;
-    private Double endLatADouble , endLngADouble
+    private Double endLatADouble , endLngADouble;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
