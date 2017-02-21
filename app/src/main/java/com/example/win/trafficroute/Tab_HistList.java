@@ -17,8 +17,8 @@ public class Tab_HistList extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.searchroutelist);
-
+//        setContentView(R.layout.searchroutelist);
+        setContentView(R.layout.tabsearchmap);
         //tab hist list activty
         listViewHistList = (ListView) findViewById(R.id.listView_histlist);
         mHelper = new DatabaseHelper(this);

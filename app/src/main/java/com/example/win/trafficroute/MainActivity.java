@@ -50,7 +50,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Log.d("Check","MainActvity OnClick ==>button_tab");
 
 //            Toast.makeText(getApplicationContext(),"1-Main Actvity Route==> On Click " , Toast.LENGTH_SHORT).show();
-            Intent i = new Intent(getApplicationContext(), SearchRouteList.class);
+//            Intent i = new Intent(getApplicationContext(), SearchRouteList.class);
+            Intent i = new Intent(getApplicationContext(), tabpage_activity.class);
             Log.d("Check","MainActvity OnClick ==>Intent "+i);
             startActivity(i);
         }

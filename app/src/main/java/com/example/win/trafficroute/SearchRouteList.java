@@ -34,7 +34,7 @@ public class SearchRouteList extends AppCompatActivity implements View.OnClickLi
     private DatabaseHelper mHelper;
     private SQLiteDatabase mDatabase;
     private GoogleMap googleMap;
-    private String serverKey = "AIzaSyDkxXWseLD9nGDV81y6DgBA1PLbwp5tzwU";
+    private String serverKey = "AIzaSyBR3pJfYwyNXs24RQRIg-3fb40BeYMfkKw";//"AIzaSyDkxXWseLD9nGDV81y6DgBA1PLbwp5tzwU";
     private LatLng camera ;//= new LatLng(37.782437, -122.4281893);
     private LatLng origin ;//= new LatLng(37.7849569, -122.4068855);
     private LatLng destination;// = new LatLng(37.7814432, -122.4460177);
@@ -97,7 +97,7 @@ public class SearchRouteList extends AppCompatActivity implements View.OnClickLi
 //        tabWork.addTab(tabMap);
 //        Log.d("Check","Search Route On onCreate ==>onCreate =3-7");
 //        tabWork.addTab(tabHistList);
-        Log.d("Check","Search Route On onCreate ==>onCreate =4");
+//        Log.d("Check","Search Route On onCreate ==>onCreate =4");
         Toast.makeText(getApplicationContext(),"2-Search Route==> onCreate " , Toast.LENGTH_SHORT).show();
         //tabsearch
 

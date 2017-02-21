@@ -40,10 +40,15 @@
         <activity android:name=".MainStartSearchRoute" />
         <activity android:name=".SearchRouteList" />
         <activity android:name=".SearchRouteActivity"/>
-        <activity android:name=".Tab_Working"/>
+        <!--<activity android:name=".Tab_Working"/>-->
         <activity android:name=".Tab_map"/>
         <activity android:name=".Tab_HistList"/>
         <activity android:name=".Tab_search"/>
+
+        <activity android:name=".tabpage_activity" />
+        <activity android:name=".tab1" />
+        <activity android:name=".tab2" />
+        <activity android:name=".tab3" />
 
          <!--<meta-data-->
          <!--android:name="com.google.android.gms.version"-->
@@ -51,7 +56,9 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyAPuASrlkcgxg5xFJXRVUXsk5sV-e9K1Ww" />
+            android:value="AIzaSyBR3pJfYwyNXs24RQRIg-3fb40BeYMfkKw"/>
+            <!--android:value="AIzaSyAPuASrlkcgxg5xFJXRVUXsk5sV-e9K1Ww" -->
+
 
         <meta-data
             android:name="com.google.android.gms.version"
