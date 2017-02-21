@@ -62,12 +62,12 @@ public class Tab_map extends AppCompatActivity implements OnMapReadyCallback, Di
 
         mapFragment = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_map));
         mapFragment.getMapAsync(this);
-
+        Log.d("Check","Tab_map ==>onCreate  = 1");
     }
 
     protected void onResume() {
         super.onResume();
-
+        Log.d("Check","Tab_map ==>onResume  = 2");
         afterResume();
     }
 
@@ -84,7 +84,7 @@ public class Tab_map extends AppCompatActivity implements OnMapReadyCallback, Di
             return;
         }
 
-
+        Log.d("Check","Tab_map ==>afterResume  = 23");
         locationManager.removeUpdates(locationListener);
         //หาพิกัด
         Location networkLocation = myfindLocation(LocationManager.NETWORK_PROVIDER);

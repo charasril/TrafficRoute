@@ -2,10 +2,13 @@ package com.example.win.trafficroute;
 
 import android.app.LocalActivityManager;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.location.Criteria;
+import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -16,8 +19,14 @@ import android.widget.TabHost;
 import android.widget.Toast;
 
 import com.example.win.trafficroute.db.DatabaseHelper;
+import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 //import android.app.LocalActivityManager;
 
@@ -25,7 +34,7 @@ import com.google.android.gms.maps.model.LatLng;
  * Created by win on 14/2/2560.
  */
 
-public class SearchRouteList extends AppCompatActivity implements View.OnClickListener {
+public class SearchRouteList extends AppCompatActivity implements View.OnClickListener, OnMapReadyCallback {
         //implements OnMapReadyCallback,View.OnClickListener, TextView.OnEditorActionListener {
 //   TabHost tabSearch,tabMap,tabHistList;
     EditText editTextStart ,editTextEnd;
@@ -91,7 +100,7 @@ public class SearchRouteList extends AppCompatActivity implements View.OnClickLi
                 .setIndicator("ประวัติการใช้งาน")
                 .setContent(new Intent(this, Tab_HistList.class));
         Log.d("Check","Search Route On onCreate ==>onCreate =3-5");
-
+        tabWork.setCurrentTab(0);
 //        tabWork.addTab(tabSearch);
 //        Log.d("Check","Search Route On onCreate ==>onCreate =3-6");
 //        tabWork.addTab(tabMap);
@@ -101,19 +110,19 @@ public class SearchRouteList extends AppCompatActivity implements View.OnClickLi
         Toast.makeText(getApplicationContext(),"2-Search Route==> onCreate " , Toast.LENGTH_SHORT).show();
         //tabsearch
 
-//        //tab hist list activty
-//        listViewHistList = (ListView) findViewById(R.id.listView_histlist);
-//        mHelper = new DatabaseHelper(this);
-//        mDatabase = mHelper.getWritableDatabase();
+       //tab hist list activty
+       listViewHistList = (ListView) findViewById(R.id.listView_histlist);
+        mHelper = new DatabaseHelper(this);
+        mDatabase = mHelper.getWritableDatabase();
+
+        //my setup  //tab map
+        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        criteria = new Criteria();
+        criteria.setAccuracy(Criteria.ACCURACY_FINE);
+        criteria.setAltitudeRequired(false);
+        criteria.setBearingRequired(false);
 //
-//        //my setup  //tab map
-//        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-//        criteria = new Criteria();
-//        criteria.setAccuracy(Criteria.ACCURACY_FINE);
-//        criteria.setAltitudeRequired(false);
-//        criteria.setBearingRequired(false);
-//
-//        ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_map)).getMapAsync(this);
+        ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_map)).getMapAsync(this);
 //
 //        Toast.makeText(getApplicationContext(),"On create gpsLocation Start==>", Toast.LENGTH_SHORT).show();
 
@@ -132,7 +141,7 @@ public class SearchRouteList extends AppCompatActivity implements View.OnClickLi
 //        afterResume();
     }
 
-    /*
+
     private void afterResume() {
 
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -145,7 +154,7 @@ public class SearchRouteList extends AppCompatActivity implements View.OnClickLi
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
-        locationManager.removeUpdates(locationListener);
+        locationManager.removeUpdates((android.location.LocationListener) locationListener);
         //หาพิกัด
         Location networkLocation = myfindLocation(LocationManager.NETWORK_PROVIDER);
         if (networkLocation != null) {
@@ -193,6 +202,8 @@ public class SearchRouteList extends AppCompatActivity implements View.OnClickLi
     }
     //get Location
     public LocationListener locationListener = new LocationListener() {
+
+
         @Override
         public void onLocationChanged(Location location) {
             startLatADouble = location.getLatitude();
@@ -264,7 +275,7 @@ public class SearchRouteList extends AppCompatActivity implements View.OnClickLi
         googleMap.addMarker(new MarkerOptions().position(origin));
     }
 
-    */
+
     @Override
     public void onClick(View v) {
         int id = v.getId();

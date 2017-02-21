@@ -21,13 +21,12 @@ public class tabpage_activity extends Activity{
 
         mLocalActivityManager = new LocalActivityManager(this, false);
         mLocalActivityManager.dispatchCreate(savedInstanceState);
-        Log.d("Check","tabpage_activity ==>Intent-1 ");
         TabHost tabHost = (TabHost) findViewById(R.id.tabhost);
         tabHost.setup(mLocalActivityManager);
 
         TabHost.TabSpec tabSearch = tabHost.newTabSpec("tab1")
                 .setIndicator("Search")
-                .setContent(new Intent(this, tab1.class));
+                .setContent(new Intent(this, Tab_search.class));
         TabHost.TabSpec tabMap = tabHost.newTabSpec("tab2")
                 .setIndicator("Map")
 //                .setContent(new Intent(this, tab2.class));
@@ -35,29 +34,26 @@ public class tabpage_activity extends Activity{
         TabHost.TabSpec tabHist = tabHost.newTabSpec("tab3")
                 .setIndicator("History")
                 .setContent(new Intent(this, tab3.class));
-        Log.d("Check","tabpage_activity ==>Intent-3 ");
+
         tabHost.addTab(tabSearch);
-        Log.d("Check","tabpage_activity ==>Intent-4 ");
         tabHost.addTab(tabMap);
-        Log.d("Check","tabpage_activity ==>Intent-5 ");
         tabHost.addTab(tabHist);
-        Log.d("Check","tabpage_activity ==>Intent-6 ");
     }
 
 
     @Override
     protected void onPause() {
         super.onPause();
-        Log.d("Check","tabpage_activity onPause==>Intent-7 ");
         mLocalActivityManager.dispatchPause(!isFinishing());
-
+        Log.d("Check","tabpage_activity-onPause 1");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Log.d("Check","tabpage_activity onResume==>Intent-7 ");
+        Log.d("Check","tabpage_activity-onResume 2");
         mLocalActivityManager.dispatchResume();
+        Log.d("Check","tabpage_activity-onResume 3");
     }
 
 }

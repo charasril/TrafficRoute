@@ -1,8 +1,8 @@
 package com.example.win.trafficroute;
 
-import android.app.Activity;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
@@ -12,7 +12,7 @@ import com.google.android.gms.maps.model.LatLng;
 /**
  * Created by win on 19/2/2560.
  */
-public class Tab_search extends Activity implements View.OnClickListener {
+public class Tab_search extends AppCompatActivity implements View.OnClickListener {
     private Button btnSearch ,btnSetMap,btnCloseSearch;
     private GoogleMap googleMap;
     private String serverKey = "AIzaSyBR3pJfYwyNXs24RQRIg-3fb40BeYMfkKw";
@@ -42,11 +42,12 @@ public class Tab_search extends Activity implements View.OnClickListener {
         int id = v.getId();
         if (id == R.id.button_search_way) {
             requestSearchWay();
+
         }  if (id == R.id.button_set_way) {
             setWayOnMap();
         }
         if (id == R.id.button_search_close) {
-
+            finish();
         }
 
     } //onClick
