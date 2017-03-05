@@ -1,9 +1,9 @@
 package com.example.win.trafficroute;
 
-import android.app.Activity;
 import android.app.LocalActivityManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.TabHost;
 
@@ -11,8 +11,12 @@ import android.widget.TabHost;
  * Created by win on 21/2/2560.
  */
 
-public class tabpage_activity extends Activity{
+public class tabpage_activity extends AppCompatActivity {
     LocalActivityManager mLocalActivityManager;
+    private TabHost.TabSpec tabSearch,tabMap,tabHist ;
+    private TabHost tabHost;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,23 +25,25 @@ public class tabpage_activity extends Activity{
 
         mLocalActivityManager = new LocalActivityManager(this, false);
         mLocalActivityManager.dispatchCreate(savedInstanceState);
-        TabHost tabHost = (TabHost) findViewById(R.id.tabhost);
+        tabHost = (TabHost) findViewById(R.id.tabhost);
         tabHost.setup(mLocalActivityManager);
 
-        TabHost.TabSpec tabSearch = tabHost.newTabSpec("tab1")
+        tabSearch = tabHost.newTabSpec("tab1")
                 .setIndicator("Search")
                 .setContent(new Intent(this, Tab_search.class));
-        TabHost.TabSpec tabMap = tabHost.newTabSpec("tab2")
+        tabMap = tabHost.newTabSpec("tab2")
                 .setIndicator("Map")
 //                .setContent(new Intent(this, tab2.class));
                 .setContent(new Intent(this, Tab_map.class));
-        TabHost.TabSpec tabHist = tabHost.newTabSpec("tab3")
+        tabHist = tabHost.newTabSpec("tab3")
                 .setIndicator("History")
                 .setContent(new Intent(this, tab3.class));
 
         tabHost.addTab(tabSearch);
         tabHost.addTab(tabMap);
         tabHost.addTab(tabHist);
+
+
     }
 
 

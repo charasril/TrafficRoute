@@ -19,7 +19,6 @@ import android.widget.TabHost;
 import android.widget.Toast;
 
 import com.example.win.trafficroute.db.DatabaseHelper;
-import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -55,6 +54,7 @@ public class SearchRouteList extends AppCompatActivity implements View.OnClickLi
     private TabHost tabWork ;
     private TabHost.TabSpec tabSearch, tabMap, tabHistList;
     LocalActivityManager mLocalActivityManager;
+    private android.location.LocationListener locationListener;
 
 
     @Override
@@ -184,48 +184,49 @@ public class SearchRouteList extends AppCompatActivity implements View.OnClickLi
 
         if (locationManager.isProviderEnabled(strProvider)) {
 
-            if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                // TODO: Consider calling
-                //    ActivityCompat#requestPermissions
-                // here to request the missing permissions, and then overriding
-                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                //                                          int[] grantResults)
-                // to handle the case where the user grants the permission. See the documentation
-                // for ActivityCompat#requestPermissions for more details.
-                return null;
-            } //
-            locationManager.requestLocationUpdates(strProvider, 1000, 10, locationListener);
-            location = locationManager.getLastKnownLocation(strProvider);
+//            if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//                // TODO: Consider calling
+//                //    ActivityCompat#requestPermissions
+//                // here to request the missing permissions, and then overriding
+//                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+//                //                                          int[] grantResults)
+//                // to handle the case where the user grants the permission. See the documentation
+//                // for ActivityCompat#requestPermissions for more details.
+//                return null;
+//            } //
+//
+//            locationManager.requestLocationUpdates(strProvider, 1000, 10, locationListener);
+//            location = locationManager.getLastKnownLocation(strProvider);
 
         }
         return location;
     }
     //get Location
-    public LocationListener locationListener = new LocationListener() {
-
-
-        @Override
-        public void onLocationChanged(Location location) {
-            startLatADouble = location.getLatitude();
-            startLngADouble = location.getLongitude();
-
-        }
-
-        @Override
-        public void onStatusChanged(String provider, int status, Bundle extras) {
-
-        }
-
-        @Override
-        public void onProviderEnabled(String provider) {
-
-        }
-
-        @Override
-        public void onProviderDisabled(String provider) {
-
-        }
-    };
+//    public LocationListener locationListener = new LocationListener() {
+//
+//
+//        @Override
+//        public void onLocationChanged(Location location) {
+//            startLatADouble = location.getLatitude();
+//            startLngADouble = location.getLongitude();
+//
+//        }
+//
+//        @Override
+//        public void onStatusChanged(String provider, int status, Bundle extras) {
+//
+//        }
+//
+//        @Override
+//        public void onProviderEnabled(String provider) {
+//
+//        }
+//
+//        @Override
+//        public void onProviderDisabled(String provider) {
+//
+//        }
+//    };
 
 
     @Override

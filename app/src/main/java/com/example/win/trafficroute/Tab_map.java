@@ -62,6 +62,7 @@ public class Tab_map extends AppCompatActivity implements OnMapReadyCallback, Di
 
         mapFragment = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_map));
         mapFragment.getMapAsync(this);
+        googleMap.setTrafficEnabled(true);
         Log.d("Check","Tab_map ==>onCreate  = 1");
     }
 

@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.win.trafficroute">
 
+    <uses-permission android:name="com.example.win.trafficroute.permission.MAPS_RECEIVE" />
+
     // Download Map from google Server
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -22,6 +24,7 @@
     //ค้นหา
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ.GSERVICES" />
     //ค้นหา service network
+
 
     <application
         android:allowBackup="true"
@@ -49,6 +52,9 @@
         <activity android:name=".tab1" />
         <activity android:name=".tab2" />
         <activity android:name=".tab3" />
+
+        <activity android:name=".ITM801_map_layout_activity"/>
+        <activity android:name=".ITM801_search_route_activity"/>
 
          <!--<meta-data-->
          <!--android:name="com.google.android.gms.version"-->
